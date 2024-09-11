@@ -14,6 +14,13 @@ public class Music {
     @ManyToOne
     private Artist artist;
 
+    public Music(String musicTitle) {
+        this.title = musicTitle;
+    }
+
+    public Music() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -40,7 +47,6 @@ public class Music {
 
     @Override
     public String toString() {
-        return "Music = " + title + '\'' +
-                ", artist = " + artist;
+        return title;
     }
 }

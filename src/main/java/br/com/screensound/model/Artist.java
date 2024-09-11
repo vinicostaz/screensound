@@ -17,8 +17,15 @@ public class Artist {
     @Enumerated(EnumType.STRING)
     private ArtistType type;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Music> musics = new ArrayList<>();
+
+    public Artist() {}
+
+    public Artist(String name, ArtistType type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -54,8 +61,8 @@ public class Artist {
 
     @Override
     public String toString() {
-        return "Artist = " + name + '\'' +
-                ", type = " + type +
-                ", musics = " + musics;
+        return "Artist = " + name +
+                ", Type = " + type +
+                ", Musics = " + musics;
     }
 }
