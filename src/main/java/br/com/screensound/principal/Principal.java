@@ -4,6 +4,7 @@ import br.com.screensound.model.Artist;
 import br.com.screensound.model.ArtistType;
 import br.com.screensound.model.Music;
 import br.com.screensound.repository.ArtistRepository;
+import br.com.screensound.service.ChatGPTQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -97,12 +98,21 @@ public class Principal {
 
     private void listSongs() {
         List<Artist> artists = repository.findAll();
-        artists.forEach(System.out::println);
+        artists.forEach(a -> a.getMusics().forEach(System.out::println));
     }
 
     private void searchSongsByArtist() {
+        System.out.println("Search song by which artist? ");
+        var name = scanner.nextLine();
+        List<Music> musics = repository.searchMusicByArtist(name);
+        musics.forEach(System.out::println);
     }
 
     private void searchArtistData() {
+        System.out.println("Search information about which artist? ");
+        var name = scanner.nextLine();
+        var response = ChatGPTQuery.getInfo(name);
+        System.out.println(response.trim());
+
     }
 }

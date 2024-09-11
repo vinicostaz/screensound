@@ -47,6 +47,7 @@ public class Music {
 
     @Override
     public String toString() {
-        return title;
+        return "Music = " + title +
+                ", Artist = " + artist.getName();
     }
 }
